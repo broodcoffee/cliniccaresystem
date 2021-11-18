@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Data</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <style>
+        .header {
+            display: flex;
+            align-self: center;
+            justify-content: space-between;
+            margin: 10px;
+        }
+        .header > input {
+            padding: 10px;
+            height: fit-content;
+            width: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Patient Form</h1>
+        <a href="./index.html">
+            <input type="button" class="btn btn-secondary" value="Log-Out">
+        </a>
+    </div>
+    <br>
+    <form action="patient.html" name="pData" id="pData" method="get" onsubmit="return validatePdata()" onreset="return confirm('This will clear all the initial data provided. Continue?')">
+        <div class="row gy-2 gx-3 align-items-center">
+            <div class="col-sm-4">
+                <input type="text" class="form-control" placeholder="ex. John, Jane" required>
+                <label for="fname">First Name<span class="text-danger align-middle">*</span></label>
+            </div>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" placeholder="type-in Mother's Maiden Last Name, if applicable">
+                <label for="mname">Middle Name</label>
+            </div>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" placeholder="ex. Doe" required>
+                <label for="lname">Last Name<span class="text-danger align-middle">*</span></label>
+            </div>
+        </div>
+        <br>
+        <div class="row gy-2 gx-3 align-items-center">
+            <div class="col-sm-12">
+                <input type="textarea" class="form-control" id="inputAddress" placeholder="Room#/Unit#, Floor, House/Lot#, Bldg. Name, Street Name, Barangay, City/Municipality, Province, Zip Code" required>
+                <label for="inputAddress" class="form-label">Address<span class="text-danger align-middle">*</span></label>
+            </div>
+        </div>
+        <br>
+        <div class="row gy-2 gx-3 align-items-center">
+            <div class="col-sm-4">
+                <input type="date" name="bdate" id="bdate" class="form-control" min="1850-01-01" required>
+                <label for="bdate">Birthdate<span class="text-danger align-middle">*</span></label>
+              </div>
+              <div class="col-sm-4">
+                <input type="tel" name="cnum" id="cnum" class="form-control" pattern="[0-9]{11}" maxlength="11" placeholder="ex. 09123456789" required>
+                <label for="cnum">Contact Number (Mobile Phone)<span class="text-danger align-middle">*</span></label>
+              </div>
+              <div class="col-sm-4">
+                  <label for="gender">Sex assigned at birth<span class="text-danger align-middle">*</span>: </label> <br>
+                  <input type="radio" class="form-check-input" name="sbirth" id="sbirth" value="Male" required> Male &nbsp;
+                  <input type="radio" class="form-check-input" name="sbirth" id="sbirth" value="Female" > Female &nbsp;
+                  <input type="radio" class="form-check-input" name="sbirth" id="sbirth" value="Undisclosed"> Prefer not to say &nbsp;
+              </div>
+          </div>
+        </div>
+        <br>
+        <div class="row gy-2 gx-3 align-items-center">
+            <label>Medical History:</label>
+            <div class="col-sm-6">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Asthma">
+                    <label class="form-check-label" >
+                        Asthma
+                    </label>
+                    <br>
+                    <input class="form-check-input" type="checkbox" value="Cancer">
+                    <label class="form-check-label" >
+                        Cancer
+                    </label>
+                    <br>
+                    <input class="form-check-input" type="checkbox" value="Cardiac Disease">
+                    <label class="form-check-label" >
+                        Cardiac Disease
+                    </label>
+                    <br>
+                    <input class="form-check-input" type="checkbox" value="Diabetes">
+                    <label class="form-check-label">
+                        Diabetes
+                    </label>
+                    <br>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Hypertension">
+                    <label class="form-check-label">
+                        Hypertension
+                    </label>
+                    <br>
+                    <input class="form-check-input" type="checkbox" value="Psychiatric Disorder">
+                    <label class="form-check-label">
+                        Psychiatric Disorder
+                    </label>
+                    <br>
+                    <input class="form-check-input" type="checkbox" value="Epilepsy">
+                    <label class="form-check-label">
+                        Epilepsy
+                    </label>
+                    <br>
+                    <input class="form-check-input" type="checkbox" value="Others">
+                    <label class="form-check-label">
+                        Others
+                    </label>
+                    <br>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row gy-2 gx-3 align-items-center">
+            <div class="col-sm-6">
+                <label>Current Symptoms: </label>
+                <select class="form-select form-select-sm" aria-label=".form-select-sm" multiple>
+                    <option value="Chest Pain">Chest Pain</option>
+                    <option value="Respiratory">Respiratory</option>
+                    <option value="Hematological">Hematological</option>
+                    <option value="Lymphatic">Lymphatic</option>
+                    <option value="Neurological">Neurological</option>
+                    <option value="Psychiatric">Psychiatric</option>
+                    <option value="Gastrointestinal">Gastrointestinal</option>
+                    <option value="Weight Loss">Weight Loss</option>
+                  </select>
+                
+              </div>
+              <div class="col-sm-6">
+                <label for="answer">Are you currently taking medications?<span class="text-danger align-middle">*</span></label> <br>
+                <input type="radio" class="form-check-input" name="answer" id="yes" value="Yes" onclick="enableMeds()"> Yes <br>
+                <input type="radio" class="form-check-input" name="answer" id="no" value="No" onclick="enableMeds()" required> No <br>
+                <input type="text" class="form-control" name="meds" id="meds" placeholder="specify medication/s taken" disabled> <br>
+              </div>
+        </div>
+        <br>
+        <p><span class="text-danger align-middle">*</span> - required fields</p>
+        <div class="m-4 d-flex flex-sm-wrap justify-content-center">
+              
+            <button class="btn btn-success m-2" type="submit">Submit</button>
+            <button class="btn btn-danger m-2"type="reset">Reset</button>
+        </div>
+    </form>
+    <script>
+        function validatePdata() {
+            const phone = document.pData.cnum.value.trim();
+            const phonePatt = /^(09)\d{9}$/;
+            if(!phonePatt.test(phone)) {
+                alert("Please follow the phone number format example: 09123456789.");
+                document.pData.cnum.focus();
+                return false;
+            }
+
+            let submitData =  confirm("This will save all provided data. \n\nDo you want to submit?");
+                if(submitData) alert("Patient Form Submitted. Registration succesful.");
+                    return submitData;
+        }
+        
+        // Set Maximum Date
+        document.getElementById('bdate').max = new Date().toLocaleDateString('en-ca');
+        
+        function enableMeds() {
+            let yes = document.getElementById('yes').checked;
+            let meds = document.getElementById('meds');
+
+            if (yes) {
+                meds.disabled = false;
+                meds.required = true;
+            }
+            else {
+                meds.disabled = true;
+                meds.value = '';
+                meds.placeholder = "";
+            };
+        }
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</body>
+</html>
