@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Data Recorded</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
+<body>
+    <div class="text-dark d-flex justify-content-between align-items-center">
+        <h1>Patient Saved Data</h1>
+        <a href="./index.html">
+            <input type="button" class="btn btn-secondary" value="Log-Out">
+        </a>
+    </div>
+    <div class="table-responsive">
+        <table id="patientDataTbl" class="table table-success table-striped">
+            <tr class="text-center align-middle">
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Middle Name</th>
+                <th>Last Name</th>
+                <th>Address</th>
+                <th>Birthdate</th>
+                <th>Contact Number</th>
+                <th>Sex Assigned At Birth</th>
+                <th>Medical History</th>
+                <th>Current Symptoms</th>
+                <th>Taking Medications?</th>
+                <th>Specified Medications</th>
+            </tr>
+        </table>
+    <div>
+    <script>
+        var pDTable = localStorage.getItem('patientData') ? JSON.parse(localStorage.getItem("patientData")) : [];
+        var patientDataArray = [];
+        patientDataArray = JSON.parse(localStorage.getItem("addPatientData"));
+        console.log(patientDataArray);
+        var patientDataTable = document.querySelector("#patientDataTbl");
+
+        patientDataArray.forEach((pData,i) => { 
+            var listRows = patientDataTable.insertRow(i+1);
+            listRows.classList.add("align-middle");
+            var j = 0;
+            for(var property in pData){
+                var listCols = listRows.insertCell(j);
+                listCols.innerHTML = pData[property];
+                j++;
+            } 
+        })
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</body>
+</html>

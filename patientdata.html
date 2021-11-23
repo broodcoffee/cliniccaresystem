@@ -28,25 +28,25 @@
         </a>
     </div>
     <br>
-    <form action="patient.html" name="pData" id="pData" method="get" onsubmit="return validatePdata()" onreset="return confirm('This will clear all the initial data provided. Continue?')">
+    <form action="./patientrec.html" name="pData" id="pData" method="get" onsubmit="return validatePdata()" onreset="return confirm('This will clear all the initial data provided. Continue?')">
         <div class="row gy-2 gx-3 align-items-center">
             <div class="col-sm-4">
-                <input type="text" class="form-control" placeholder="ex. John, Jane" required>
+                <input type="text" name="fname" id="fname" class="form-control" placeholder="ex. John, Jane" required>
                 <label for="fname">First Name<span class="text-danger align-middle">*</span></label>
             </div>
             <div class="col-sm-4">
-                <input type="text" class="form-control" placeholder="type-in Mother's Maiden Last Name, if applicable">
+                <input type="text" name="mname" id="mname" class="form-control" placeholder="type-in Mother's Maiden Last Name, if applicable">
                 <label for="mname">Middle Name</label>
             </div>
             <div class="col-sm-4">
-                <input type="text" class="form-control" placeholder="ex. Doe" required>
+                <input type="text" name="lname" id="lname" class="form-control" placeholder="ex. Doe" required>
                 <label for="lname">Last Name<span class="text-danger align-middle">*</span></label>
             </div>
         </div>
         <br>
         <div class="row gy-2 gx-3 align-items-center">
             <div class="col-sm-12">
-                <input type="textarea" class="form-control" id="inputAddress" placeholder="Room#/Unit#, Floor, House/Lot#, Bldg. Name, Street Name, Barangay, City/Municipality, Province, Zip Code" required>
+                <input type="textarea" class="form-control" name="inputAddress" id="inputAddress" placeholder="Room#/Unit#, Floor, House/Lot#, Bldg. Name, Street Name, Barangay, City/Municipality, Province, Zip Code" required>
                 <label for="inputAddress" class="form-label">Address<span class="text-danger align-middle">*</span></label>
             </div>
         </div>
@@ -61,7 +61,7 @@
                 <label for="cnum">Contact Number (Mobile Phone)<span class="text-danger align-middle">*</span></label>
               </div>
               <div class="col-sm-4">
-                  <label for="gender">Sex assigned at birth<span class="text-danger align-middle">*</span>: </label> <br>
+                  <label for="sbirth">Sex assigned at birth<span class="text-danger align-middle">*</span>: </label> <br>
                   <input type="radio" class="form-check-input" name="sbirth" id="sbirth" value="Male" required> Male &nbsp;
                   <input type="radio" class="form-check-input" name="sbirth" id="sbirth" value="Female" > Female &nbsp;
                   <input type="radio" class="form-check-input" name="sbirth" id="sbirth" value="Undisclosed"> Prefer not to say &nbsp;
@@ -73,22 +73,22 @@
             <label>Medical History:</label>
             <div class="col-sm-6">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="Asthma">
+                    <input class="form-check-input" type="checkbox" name="medhist" id="medhist" value="Asthma">
                     <label class="form-check-label" >
                         Asthma
                     </label>
                     <br>
-                    <input class="form-check-input" type="checkbox" value="Cancer">
+                    <input class="form-check-input" type="checkbox" name="medhist" id="medhist" value="Cancer">
                     <label class="form-check-label" >
                         Cancer
                     </label>
                     <br>
-                    <input class="form-check-input" type="checkbox" value="Cardiac Disease">
+                    <input class="form-check-input" type="checkbox" name="medhist" id="medhist" value="Cardiac Disease">
                     <label class="form-check-label" >
                         Cardiac Disease
                     </label>
                     <br>
-                    <input class="form-check-input" type="checkbox" value="Diabetes">
+                    <input class="form-check-input" type="checkbox" name="medhist" id="medhist" value="Diabetes">
                     <label class="form-check-label">
                         Diabetes
                     </label>
@@ -97,22 +97,22 @@
             </div>
             <div class="col-sm-6">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="Hypertension">
+                    <input class="form-check-input" type="checkbox" name="medhist" id="medhist" value="Hypertension">
                     <label class="form-check-label">
                         Hypertension
                     </label>
                     <br>
-                    <input class="form-check-input" type="checkbox" value="Psychiatric Disorder">
+                    <input class="form-check-input" type="checkbox" name="medhist" id="medhist" value="Psychiatric Disorder">
                     <label class="form-check-label">
                         Psychiatric Disorder
                     </label>
                     <br>
-                    <input class="form-check-input" type="checkbox" value="Epilepsy">
+                    <input class="form-check-input" type="checkbox" name="medhist" id="medhist" value="Epilepsy">
                     <label class="form-check-label">
                         Epilepsy
                     </label>
                     <br>
-                    <input class="form-check-input" type="checkbox" value="Others">
+                    <input class="form-check-input" type="checkbox" name="medhist" id="medhist" value="Others">
                     <label class="form-check-label">
                         Others
                     </label>
@@ -124,7 +124,7 @@
         <div class="row gy-2 gx-3 align-items-center">
             <div class="col-sm-6">
                 <label>Current Symptoms: </label>
-                <select class="form-select form-select-sm" aria-label=".form-select-sm" multiple>
+                <select class="form-select form-select-sm" aria-label=".form-select-sm" name="csymptom" id="csymptom" multiple>
                     <option value="Chest Pain">Chest Pain</option>
                     <option value="Respiratory">Respiratory</option>
                     <option value="Hematological">Hematological</option>
@@ -153,19 +153,76 @@
     </form>
     <script>
         function validatePdata() {
-            const phone = document.pData.cnum.value.trim();
-            const phonePatt = /^(09)\d{9}$/;
+            var phone = document.pData.cnum.value.trim();
+            var phonePatt = /^(09)\d{9}$/;
             if(!phonePatt.test(phone)) {
                 alert("Please follow the phone number format example: 09123456789.");
                 document.pData.cnum.focus();
                 return false;
             }
+                
+            var pDTable = localStorage.getItem('patientData') ? JSON.parse(localStorage.getItem("patientData")) : [];
 
-            let submitData =  confirm("This will save all provided data. \n\nDo you want to submit?");
-                if(submitData) alert("Patient Form Submitted. Registration succesful.");
+            var submitData =  confirm("This will save all provided data. \n\nDo you want to submit?");
+                if(submitData) { 
+                    var assignMent = document.querySelectorAll("input[name='sbirth']:checked");
+                    var assignmentDisclosed = [...assignMent].map(chosen => chosen.value).join("");
+
+                    var historyTicked = document.querySelectorAll("input[name='medhist']:checked");
+                    var patientMedHist = [...historyTicked].map(checked => checked.value);
+
+                    var symptomsExperienced = document.getElementById("csymptom");
+                    var patientSymptoms = [...symptomsExperienced].filter(option => option.selected).map(option => option.value);
+
+                    var answerToMeds = document.querySelectorAll("input[name='answer']:checked");
+                    var withMeds = [...answerToMeds].map(choice => choice.value).join("");
+                    var specifiedMeds = document.querySelector("input[name='meds']").value;
+                    
+                    // Assign ID number
+                    var fnstart = document.getElementById("fname").value.charAt(0);
+                    var lnstart = document.getElementById("lname").value.charAt(0);
+                    var patientId = `${fnstart}${lnstart}-${Date.now()}`; 
+                
+                    var addPatientData = {
+                        id: patientId,
+                        firstName: document.pData.fname.value,
+                        middleName: document.pData.mname.value,
+                        lastName: document.pData.lname.value,
+                        patientAddress: document.pData.inputAddress.value,
+                        birthDate: document.pData.bdate.value,
+                        contactNumber: document.pData.cnum.value,
+                        birthSex: assignmentDisclosed,
+                        medicalHistory: patientMedHist,
+                        currentSymptom: patientSymptoms,
+                        medYesOrNo: withMeds,
+                        medicationsTaken: specifiedMeds,
+                    }
+                    pDTable.push(addPatientData);
+                    console.table(pDTable);
+                    localStorage.setItem("addPatientData", JSON.stringify(pDTable));
+                
+                    alert("Patient Form Submitted. Registration succesful.");
                     return submitData;
+                }
+                
         }
+
         
+        /*
+        let patientDataTable = document.querySelector("#patientRegForm table");
+
+        patientDataArray.forEach((pData,i) => { 
+            let listRows = patientDataTable.insertRow(i+1);
+            listRows.classList.add("align-middle");
+            let j = 0;
+            for(let property in pData){
+                let listCols = listRows.insertCell(j);
+                listCols.innerHTML = pData[property];
+                j++;
+            } 
+        })  
+        */
+
         // Set Maximum Date
         document.getElementById('bdate').max = new Date().toLocaleDateString('en-ca');
         
@@ -179,11 +236,12 @@
             }
             else {
                 meds.disabled = true;
+                meds.required = false;
                 meds.value = '';
                 meds.placeholder = "";
             };
         }
-
+ 
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
